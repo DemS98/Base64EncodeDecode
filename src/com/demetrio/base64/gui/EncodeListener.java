@@ -43,6 +43,7 @@ class EncodeListener implements ActionListener
 					{
 						result = Base64.base64encode(new RandomAccessFile(c.getSelectedFile().getAbsolutePath(),"r"));
 						text.setText(null);
+						int wrap = text.getWidth() / text.getFontMetrics(text.getFont()).stringWidth("A");
 						int i;
 						for(i=0;i+wrap<result.length();i+=wrap)
 						{
@@ -134,5 +135,4 @@ class EncodeListener implements ActionListener
 	private JFrame window;
 	private JTextArea text;
 	private String result="";
-	private static final int wrap = 61; // numero di colonne nella TextArea
 }

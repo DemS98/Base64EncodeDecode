@@ -43,7 +43,7 @@ class EncodeListener implements ActionListener
 					{
 						result = Base64.base64encode(new RandomAccessFile(c.getSelectedFile().getAbsolutePath(),"r"));
 						text.setText(null);
-						int wrap = text.getWidth() / text.getFontMetrics(text.getFont()).stringWidth("A");
+						int wrap = text.getWidth() / text.getFontMetrics(text.getFont()).stringWidth("A") - 1;
 						int i;
 						for(i=0;i+wrap<result.length();i+=wrap)
 						{

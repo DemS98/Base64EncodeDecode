@@ -14,8 +14,24 @@ import javax.swing.SwingUtilities;
 import com.demetrio.base64.base64.Base64;
 import com.demetrio.base64.base64.Base64DecodeException;
 
+/** Listener class for decoding a file selected by a {@link javax.swing.JFileChooser JFileChooser}.
+ * 	It has a default constructor (because it isn't specified) and implements {@link java.awt.event.ActionListener#actionPerformed(ActionEvent) 
+ *  actionPerformed(ActionEvent)} from the {@link java.awt.event.ActionListener ActionListener} interface. 
+ * 	@author Alessandro Chiariello (Demetrio)
+ * 	@version 1.0
+ * 	@see java.awt.event.ActionListener ActionListener*/
 class DecodeListener implements ActionListener {
 
+	/** Implementation of {@link java.awt.event.ActionListener#actionPerformed(ActionEvent) actionPerformed(ActionEvent)}
+	 * 	from the {@link java.awt.event.ActionListener ActionListener} interface.
+	 * 	This method opens a <i>file choosing</i> dialog that allows the user to choose a file, containing base64 text;
+	 * 	than it opens a <i>file saving</i> dialog for saving the decoded text in a file (it can be an existing file or a new file
+	 * 	specified in the dialog text field); finally, it decodes the base64 input file with the {@link com.demetrio.base64.base64.Base64#decode(RandomAccessFile)
+	 * 	Base64.decode(RandomAccessFile)} method and save the result in the output file.
+	 * 	If the input file doesn't contain base64 text, a message dialog appears indicating that.
+	 * 	@author Alessandro Chiariello (Demetrio)
+	 * 	@version 1.0
+	 * 	@see java.awt.event.ActionListener#actionPerformed(ActionEvent) actionPerformed(ActionEvent) */
 	@Override
 	public void actionPerformed(ActionEvent event) 
 	{
@@ -41,16 +57,16 @@ class DecodeListener implements ActionListener {
 				String saveFile = c.getSelectedFile().getAbsolutePath();
 				try 
 				{
-					Base64.base64decode(new RandomAccessFile(decFile,"r")).writeTo(new FileOutputStream(saveFile));
+					Base64.decode(new RandomAccessFile(decFile,"r")).writeTo(new FileOutputStream(saveFile));
 				} 
 				catch (IOException e) 
 				{
 					e.printStackTrace();
-					JOptionPane.showMessageDialog(null,"Errore: lettura DecodeListener. Segnalare il bug!!");
+					JOptionPane.showMessageDialog(null,"Error reading file in class DecodeListener. Report this bug!!");
 				}
 				catch (Base64DecodeException e)
 				{
-					JOptionPane.showMessageDialog(c,"Errore: questo file non è codificato in base64!!");
+					JOptionPane.showMessageDialog(c,"Error: this file isn't coded in base64!!");
 				}
 			}
 			if (rval==JFileChooser.CANCEL_OPTION)

@@ -14,18 +14,45 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+/** Class for constructing the main application interface.<br/>
+ * 	It's a subclass of {@link javax.swing.JFrame JFrame} without any override.<br/>
+ * 	It has a {@link #B64Frame(int, int) public constructor} that creates the interface.
+ * 	@author Alessandro Chiariello (Demetrio)
+ * 	@version 1.0
+ * 	@see {@link #B64Frame(int, int)}*/
 public class B64Frame extends JFrame 
 {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4233267367718036468L;
-
+	
+	/** This public constructor creates the main application interface.
+	 * 	It consists in 3 panels:
+	 * 	<ul>
+	 * 		<li>
+	 * 			North Panel - the title of the application and two buttons, <b>Encode file</b>
+	 * 			and <b>Decode file</b>, respectively for encoding a file from plain text to base64 text and
+	 * 			for decoding a file from base64 text to plain text
+	 * 		</li>
+	 * 		<li>
+	 * 			Central Panel - two text areas, one for plain text and the other for base64 text. When entering a text
+	 * 			in an area, it's translated in the other area
+	 * 		</li>
+	 * 		<li>
+	 * 			South Panel - it's only a label with the autor of the application and the license.
+	 * 		</li>
+	 * The constructor takes two parameter for sizing the frame but it doesn't set the location, the default close operation
+	 * and the visibility. This is done in the {@link com.demetrio.base64.main.Main#main(String[]) main} method.
+	 * @param width - the width of the window containing the frame
+	 * @param height - the height of the window containing the frame
+	 * @author Alessandro Chiariello (Demetrio)
+	 * @version 1.0 */
 	public B64Frame(int width,int height)
 	{
 		super("Base64 Encode Decode");
 		
-		/* Pannello nord */
+		/* North Panel */
 		JPanel northPanel = new JPanel(new GridLayout(2,5));
 		
 		JLabel intro1 = new JLabel("Base64",SwingConstants.CENTER);
@@ -49,7 +76,7 @@ public class B64Frame extends JFrame
 		northPanel.add(new JLabel());
 		
 		
-		/* Pannello centrale */
+		/* Central Panel */
 		
 		JPanel fields = new JPanel(new GridLayout(2,1,0,10));
 		
@@ -70,11 +97,11 @@ public class B64Frame extends JFrame
 		plain.addKeyListener(new PlainListener(base64,true));
 		base64.addKeyListener(new PlainListener(plain,false));
 		
-		/* Costruzione frame */
+		/* Frame construction */
 		
-		this.setSize(width, height);
-		this.add(BorderLayout.NORTH,northPanel);
-		this.add(BorderLayout.CENTER,fields);
-		this.add(BorderLayout.SOUTH,new JLabel("Scritto da Alessandro Chiariello. Licenza GNU GPL",SwingConstants.RIGHT));
+		setSize(width, height);
+		add(northPanel,BorderLayout.NORTH);
+		add(fields,BorderLayout.CENTER);
+		add(new JLabel("Developed by Alessandro Chiariello (Demetrio). GNU GPL",SwingConstants.RIGHT),BorderLayout.SOUTH);
 	}
 }

@@ -114,7 +114,7 @@ public final class Base64
 	public static String encode(String str) throws UnsupportedEncodingException
 	{
 		int n=8, i=0;
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		byte buf[] = str.getBytes("UTF-8");
 		
 		while (i<buf.length)
@@ -127,7 +127,7 @@ public final class Base64
 					int pow = (int) Math.pow(2,n);
 					num = ((int) buf[i] & 0xff) / pow + resto;
 					resto = (((int) buf[i] & 0xff) % pow) << (6-n);
-					result+=tab[num];
+					result.append(tab[num]);
 				}
 			}
 			catch (ArrayIndexOutOfBoundsException e)
@@ -136,17 +136,17 @@ public final class Base64
 			}
 			finally
 			{
-				result+=tab[resto];
+				result.append(tab[resto]);
 			}
 		}
 		
 		while (n<8)
 		{
-			result+='=';
+			result.append('=');
 			n+=2;
 		}
 		
-		return result;
+		return result.toString();
 	}
 	
 	/** It decodes the base64 input string in plain text.

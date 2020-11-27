@@ -2,9 +2,7 @@
 Base64 Encode Decode is a GUI application written in Java for encoding or decoding base64 text or file.
 
 ## Installation
-For running the application, you can:
-- Import the *src* folder in a new project in Eclipse, NetBeans or any other IDE for development in Java.
-- Download the **Base64EncodeDecode.jar** file and run in a shell (cmd,bash...) the following command: 
+Download the **Base64EncodeDecode.jar** file and run in a shell (cmd,bash...) the following command: 
 `java -jar Base64EncodeDecode.jar`  
 To run this command, you must have Java installed on your machine.
 
@@ -18,6 +16,9 @@ Moreover there are two buttons:
 - **Decode File** for decoding a file in base64. Two dialogs will be shown one by one: 
     * the first for choosing the file to decode.
     * the second for saving the result of the decoding in a file (that has to be in the correct format).
+
+## Note
+This application was written as a test. 
 
 ## Author
 Alessandro Chiariello (Demetrio).
